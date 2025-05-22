@@ -29,4 +29,8 @@
     <ProjectReference Include="..\BD.PublicPortal.Application\BD.PublicPortal.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Communes\" />
+  </ItemGroup>
+
 </Project>

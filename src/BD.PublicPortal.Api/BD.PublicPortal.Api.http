@@ -59,7 +59,11 @@ GET {{host}}:{{port}}/Wilayas
 
 
 ###
-GET {{host}}:{{port}}/BTC/16
+GET {{host}}:{{port}}/BTC/32
+
+
+###
+GET {{host}}:{{port}}/Communes/16
 
 
 ### Register a new user
