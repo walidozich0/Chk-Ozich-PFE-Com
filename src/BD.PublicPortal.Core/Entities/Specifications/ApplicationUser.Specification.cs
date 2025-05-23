@@ -39,4 +39,9 @@ public class ApplicationUserSpecification:Specification<ApplicationUser>
       Query.Skip((int)filter.PaginationSkip);
   }
 
+  public ApplicationUserSpecification(Guid? ApplicationUserId)
+  {
+    if(ApplicationUserId != null)
+      Query.Where(x => x.Id == ApplicationUserId);
+  }
 }
