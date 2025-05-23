@@ -173,3 +173,42 @@ GET {{host}}:{{port}}/BTC?PaginationTake=10&&PaginationSkip=30&level=1
 
 
 
+GET {{host}}:{{port}}/Pledges
+###
+
+GET {{host}}:{{port}}/Pledges?PaginationTake=5&level=1
+### 
+
+@User1Id=0196fa27-4ca5-740f-ae1f-2620600d913e
+@User2Id=0196fd7e-2d78-75ff-92ab-8c7f590e598c
+@User3Id=0196fd80-a8ca-7250-9064-615c445fee84
+GET {{host}}:{{port}}/Pledges?UserId={{User1Id}}&PaginationTake=10&level=1
+### 
+
+GET {{host}}:{{port}}/Pledges?UserId={{User2Id}}&PaginationTake=10&level=1
+### 
+
+GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&PaginationTake=10&level=1
+### 
+
+
+
+GET {{host}}:{{port}}/Pledges?UserId={{User1Id}}&EvolutionStatus=0&PaginationTake=10&level=1
+###  EvolutionStatus(0-5)
+
+GET {{host}}:{{port}}/Pledges?UserId={{User2Id}}&EvolutionStatus=0&PaginationTake=10&level=1
+### 
+
+GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&EvolutionStatus=0&PaginationTake=10&level=1
+### 
+
+
+
+GET {{host}}:{{port}}/Pledges?UserId={{User1Id}}&EvolutionStatus=2&PaginationTake=10&level=1
+###  EvolutionStatus(0-5)
+
+GET {{host}}:{{port}}/Pledges?UserId={{User2Id}}&EvolutionStatus=1&PaginationTake=10&level=1
+### 
+
+GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&EvolutionStatus=4&PaginationTake=10&level=1
+### 
