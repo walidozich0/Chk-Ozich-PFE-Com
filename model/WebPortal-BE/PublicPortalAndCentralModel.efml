@@ -233,7 +233,7 @@
     </property>
   </class>
   <associations>
-    <association name="BloodDonationRequest_BloodDonationPledge" cardinality="OneToMany" p1:Guid="338131df-ea14-4630-966a-555cdb31b08c">
+    <association name="BloodDonationRequest_BloodDonationPledge" cardinality="OneToMany" p1:Guid="338131df-ea14-4630-966a-555cdb31b08c" p1:GenerateDTO="False">
       <end1 multiplicity="One" name="BloodDonationRequest" class="BloodDonationPledge" relation-class="BloodDonationRequest" constrained="True" lazy="False" p1:Guid="185a07da-91b6-40f7-9d10-05f307f2ff14">
         <property name="Id" />
       </end1>
@@ -261,15 +261,15 @@
       <end1 multiplicity="One" name="ApplicationUser" class="DonorBloodTransferCenterSubscriptions" relation-class="ApplicationUser" constrained="True" lazy="False" p1:Guid="2d2dcca1-d36f-4ddb-a7e8-7cc1c66d7cd7">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="DonorBloodTransferCenterSubscriptions" class="ApplicationUser" relation-class="DonorBloodTransferCenterSubscriptions" lazy="False" p1:Guid="993f6369-7062-40ac-8d3d-ddc8d150af02">
+      <end2 multiplicity="Many" name="DonorBloodTransferCenterSubscriptions" class="ApplicationUser" relation-class="DonorBloodTransferCenterSubscriptions" lazy="False" p1:Guid="993f6369-7062-40ac-8d3d-ddc8d150af02" p1:GenerateDTO="False">
         <property name="ApplicationUserId" />
       </end2>
     </association>
-    <association name="ApplicationUser_BloodDonationPledge" cardinality="OneToMany" p1:Guid="bd8a7a4a-bf94-47ee-b125-78f015ec335b">
+    <association name="ApplicationUser_BloodDonationPledge" cardinality="OneToMany" p1:Guid="bd8a7a4a-bf94-47ee-b125-78f015ec335b" p1:GenerateDTO="False">
       <end1 multiplicity="One" name="ApplicationUser" class="BloodDonationPledge" relation-class="ApplicationUser" constrained="True" lazy="False" p1:Guid="dc524751-b3d6-4a4b-8f0f-1e7e1ec162d6">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="BloodDonationPledges" class="ApplicationUser" relation-class="BloodDonationPledge" lazy="False" p1:Guid="68e948c7-8c63-4233-94a8-39125b892277">
+      <end2 multiplicity="Many" name="BloodDonationPledges" class="ApplicationUser" relation-class="BloodDonationPledge" lazy="False" p1:Guid="68e948c7-8c63-4233-94a8-39125b892277" p1:GenerateDTO="False">
         <property name="ApplicationUserId" />
       </end2>
     </association>
@@ -290,7 +290,7 @@
       </end2>
     </association>
     <association name="Commune_ApplicationUser" cardinality="OneToMany" p1:Guid="3ebebd20-f6c4-427e-9719-2ac757368606">
-      <end1 multiplicity="ZeroOrOne" name="Commune" class="ApplicationUser" relation-class="Commune" constrained="True" lazy="False" p1:Guid="15e57bdd-c223-430a-956e-35ad4dd956bf">
+      <end1 multiplicity="ZeroOrOne" name="Commune" class="ApplicationUser" relation-class="Commune" constrained="True" lazy="False" p1:Guid="15e57bdd-c223-430a-956e-35ad4dd956bf" p1:GenerateDTO="False">
         <property name="Id" />
       </end1>
       <end2 multiplicity="Many" name="ApplicationUsers" class="Commune" relation-class="ApplicationUser" lazy="False" p1:Guid="c4a0b5eb-da66-4d35-a724-e3d229fbfe86">

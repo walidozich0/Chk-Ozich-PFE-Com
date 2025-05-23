@@ -24,7 +24,7 @@ public static class InfrastructureServiceExtensions
     var connectionString = config.GetConnectionString("DefaultConnection");
     Guard.Against.Null(connectionString);
     services.AddDbContext<AppDbContext>(options =>
-     options.UseNpgsql(connectionString));
+     options.UseNpgsql(connectionString).EnableSensitiveDataLogging().EnableDetailedErrors());
 
     // Register Identity with custom user and role
     //services.AddIdentity<ApplicationUser, ApplicationRole>();

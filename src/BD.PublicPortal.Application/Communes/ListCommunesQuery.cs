@@ -2,4 +2,4 @@
 
 namespace BD.PublicPortal.Application.Communes;
 
-public record ListCommunesQuery(int? WilayaId):IQuery<Result<IEnumerable<CommunesDTO>>>;
+public record ListCommunesQuery(int? WilayaId):IQuery<Result<IEnumerable<CommuneDTO>>>;

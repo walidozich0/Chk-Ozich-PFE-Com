@@ -1,7 +1,7 @@
 ﻿namespace BD.PublicPortal.Application.Communes;
 
 
-public record CommunesDTO(
+public record CommuneDTO(
   string Name,
   
   int WilayaId);

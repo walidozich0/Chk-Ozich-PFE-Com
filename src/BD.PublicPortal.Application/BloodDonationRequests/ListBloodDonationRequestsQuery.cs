@@ -1,3 +1,8 @@
-﻿namespace BD.PublicPortal.Application.BloodDonationRequests;
+﻿using BD.PublicPortal.Core.DTOs;
+using BD.PublicPortal.Core.Entities.Enums;
+using BD.PublicPortal.Core.Entities.Specifications;
 
-public record ListBloodDonationRequestsQuery(): IQuery<Result<IEnumerable<BloodDonationRequestDTO>>>;
+namespace BD.PublicPortal.Application.BloodDonationRequests;
+
+
+public record ListBloodDonationRequestsQuery(BloodDonationRequestSpecificationFilter? filter = null, Guid? LoggedUserID = null, int? Level = null): IQuery<Result<IEnumerable<BloodDonationRequestDTO>>>;

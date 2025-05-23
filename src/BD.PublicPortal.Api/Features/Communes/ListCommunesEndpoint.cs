@@ -5,7 +5,7 @@ namespace BD.PublicPortal.Api.Features.Communes;
 public record ListCommunesEndpointRequest(int? WilayaId);
 public class ListCommunesEndpointResponse
 {
-  public IEnumerable<CommunesDTO> Communes { get; set; } = null!;
+  public IEnumerable<CommuneDTO> Communes { get; set; } = null!;
 }
 
 public class ListCommunesEndpoint(IMediator _mediator) : Endpoint<ListCommunesEndpointRequest, ListCommunesEndpointResponse>
