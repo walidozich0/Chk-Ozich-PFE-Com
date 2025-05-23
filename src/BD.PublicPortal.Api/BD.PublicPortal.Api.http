@@ -42,35 +42,49 @@ DELETE {{host}}:{{port}}/Contributors/{{id_to_delete}}
 
 
 
-//********************************************************************//********************************************************************
-
+//Enums
 GET {{host}}:{{port}}/enums/BloodGroup,DonorAvailability,DonorContactMethod
-
 ###
+
 GET {{host}}:{{port}}/Wilayas
+###
 
+GET {{host}}:{{port}}/Communes/16
 ###
-GET {{host}}:{{port}}/Communes/44
 
+GET {{host}}:{{port}}/BTC/16
 ###
-GET {{host}}:{{port}}/BTC/32
 
+GET {{host}}:{{port}}/BloodDonationRequests?&wilayaId=16&PaginationTake=10&level=1
 ###
-GET {{host}}:{{port}}/BloodDonationRequests?&wilayaId=16&PaginationTake=10&&PaginationSkip=10&level=1
 
+GET {{host}}:{{port}}/BloodDonationRequests?PaginationTake=10&level=2adee6664-952a-e8cb-d82b-47ce7816b02b
 ###
-GET {{host}}:{{port}}/BloodDonationRequests?PaginationTake=10&level=1
-###
+
 GET {{host}}:{{port}}/BloodDonationRequests?PaginationTake=10&&PaginationSkip=10&level=1
-
 ###
+
 GET {{host}}:{{port}}/BloodDonationRequests?PaginationTake=10&&PaginationSkip=20&level=1
-
 ###
+
 GET {{host}}:{{port}}/BloodDonationRequests?PaginationTake=10&&PaginationSkip=30&level=1
+###
 
+GET {{host}}:{{port}}/BTC?&wilayaId=9&PaginationTake=10&level=1
+###
 
-### Register a new user
+GET {{host}}:{{port}}/BTC?PaginationTake=10&level=1
+###
+
+GET {{host}}:{{port}}/BTC?PaginationTake=10&&PaginationSkip=10&level=1
+###
+
+GET {{host}}:{{port}}/BTC?PaginationTake=10&&PaginationSkip=20&level=1
+###
+
+GET {{host}}:{{port}}/BTC?PaginationTake=10&&PaginationSkip=30&level=1
+###
+
 POST {{host}}:{{port}}/auth/register2
 Content-Type: application/json
 {
@@ -91,8 +105,8 @@ Content-Type: application/json
   "donorLastDonationDate": "2025-05-22T09:16:16.749Z",
   "communeId": 558  
 }
-
 ###
+
 POST {{host}}:{{port}}/auth/register2
 Content-Type: application/json
 {
@@ -105,17 +119,21 @@ Content-Type: application/json
   "donorBloodGroup": 7,
   "donorNIN": "123456789123456789"  
 }
-
 ###
+
 POST {{host}}:{{port}}/auth/login
 Content-Type: application/json
 {
   "email": "chk",
   "password": "Karim-74"
 }
-
 ###
+
+
 @token = CfDJ8L42nD5MPzlJlHz_DbJr-S1RrWyraV7PmKE26GD-o896apRBDYK1xOQkJSBtggDxZT9mrZR-O_p4MsSWP6MN7eI6qImQ-XUaU2jD4g1IdphqFaecSRbcLnnRB7UDnVz-9f9QmY_bgFiBs-r_jRNeU50DmkJTYqdH-Kzzqmb0Ppj7xfdS16hIvvA7z7DyjStLtNnd9cX5MMLjWYePK-pD-FaKPMNtLj8uXHYPJpX7C2IRd2tVlt0CdtZThIQiqed8TKkv2gJiyJODY9NN41rFejCryTmV-fnqb6zf9bomQqu7TkiSrgHHHdoY6kS62Q2SO3cXZz6yUjeumCx6qykvT66ZGUfoZgl2jyuZGsRHsr3UkDxVK49HOlgU-6kssHWO47aiMcN9TB2fVy1w6c3OxOmdMMdTnx6cmjKJChMoDWj1y4YB4W2zX646DN_MsGQhmIb2rgxC2OkX7jvpAVIGl2UaUDyqk_HmXXlKtT1pVK8shvtt7IZ7EAXTEcAZiiVe7PctDy1_rmrISrlc_i0Dg1kMWP9kQ1_UVVNtfrcMBlkyWn419d70IkuAq0pdAicI9WdU2gWsySzvZhuf8tKcKROep9jTkGfo1tC7MfScz0a8WTUhzqT6k11zy9nleSwNMe7N3TThQumQV3CBW9kmNz1znaCWxIhXtFdVlsn9Dk5EwyY0U81Je-c7J5_EWeOFAA
 GET {{host}}:{{port}}/auth/manage/info
 Authorization: Bearer {{token}}
+###
 
+GET http://192.168.1.211:5000/Wilayas
+###
