@@ -7,7 +7,6 @@
 GET {{host}}:{{port}}/Contributors
 
 ###
-// Get a specific contributor
 @id_to_get=2
 GET {{host}}:{{port}}/Contributors/{{id_to_get}}
 
@@ -23,7 +22,6 @@ Content-Type: application/json
 }
 
 ###
-// Update a contributor
 @id_to_update=3
 PUT {{host}}:{{port}}/Contributors/{{id_to_update}}
 Content-Type: application/json
@@ -34,7 +32,6 @@ Content-Type: application/json
 }
 
 ###
-// Delete a contributor
 @id_to_delete=6
 DELETE {{host}}:{{port}}/Contributors/{{id_to_delete}}
 
@@ -42,6 +39,7 @@ DELETE {{host}}:{{port}}/Contributors/{{id_to_delete}}
 
 
 
+### Auth:
 
 POST {{host}}:{{port}}/auth/register2
 Content-Type: application/json
@@ -96,6 +94,12 @@ Authorization: Bearer {{token}}
 
 
 
+### User:
+
+GET {{host}}:{{port}}/user/0196fa2b-e3ba-77ca-a848-31f0e4b35ee6
+###
+
+
 GET {{host}}:{{port}}/users/
 ###
 
@@ -122,11 +126,15 @@ GET {{host}}:{{port}}/users/?DonorExcludedFromPublicPortal=false&PaginationTake=
 
 
 
+### Enums:
+
 //Enums
 GET {{host}}:{{port}}/enums/BloodGroup,DonorAvailability,DonorContactMethod
 ###
 
 
+
+### Wilayas,Communes:
 
 GET {{host}}:{{port}}/Wilayas
 ###
@@ -135,6 +143,8 @@ GET {{host}}:{{port}}/Communes/16
 ###
 
 
+
+### Blood Requests:
 
 GET {{host}}:{{port}}/BloodDonationRequests
 ###
@@ -153,8 +163,7 @@ GET {{host}}:{{port}}/BloodDonationRequests?PaginationTake=10&&PaginationSkip=30
 
 
 
-GET {{host}}:{{port}}/BTC/16
-###
+### CTS:
 
 GET {{host}}:{{port}}/BTC?&wilayaId=9&PaginationTake=10&level=1
 ###
@@ -172,6 +181,7 @@ GET {{host}}:{{port}}/BTC?PaginationTake=10&&PaginationSkip=30&level=1
 ###
 
 
+### Pledges:
 
 GET {{host}}:{{port}}/Pledges
 ###
@@ -192,7 +202,6 @@ GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&PaginationTake=10&level=1
 ### 
 
 
-
 GET {{host}}:{{port}}/Pledges?UserId={{User1Id}}&EvolutionStatus=0&PaginationTake=10&level=1
 ###  EvolutionStatus(0-5)
 
@@ -203,7 +212,6 @@ GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&EvolutionStatus=0&PaginationTak
 ### 
 
 
-
 GET {{host}}:{{port}}/Pledges?UserId={{User1Id}}&EvolutionStatus=2&PaginationTake=10&level=1
 ###  EvolutionStatus(0-5)
 
@@ -212,3 +220,14 @@ GET {{host}}:{{port}}/Pledges?UserId={{User2Id}}&EvolutionStatus=1&PaginationTak
 
 GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&EvolutionStatus=4&PaginationTake=10&level=1
 ### 
+
+
+
+### BTC subscribed
+
+@UserId = 0196fa27-4ca5-740f-ae1f-2620600d913e
+GET {{host}}:{{port}}/BTC/subscribed?ApplicationUserId={{UserId}}&PaginationTake=10&level=1
+###
+
+GET {{host}}:{{port}}/BTC/subscribed?level=1
+###
