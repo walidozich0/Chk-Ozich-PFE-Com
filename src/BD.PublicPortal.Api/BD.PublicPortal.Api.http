@@ -96,7 +96,7 @@ Authorization: Bearer {{token}}
 
 ### User:
 
-GET {{host}}:{{port}}/user/0196fa2b-e3ba-77ca-a848-31f0e4b35ee6
+GET {{host}}:{{port}}/user/0196fd7f-3618-71fc-a348-680923b64576
 ###
 
 
@@ -191,7 +191,7 @@ GET {{host}}:{{port}}/Pledges?PaginationTake=5&level=1
 
 @User1Id=0196fa27-4ca5-740f-ae1f-2620600d913e
 @User2Id=0196fd7e-2d78-75ff-92ab-8c7f590e598c
-@User3Id=0196fd80-a8ca-7250-9064-615c445fee84
+@User3Id=0196fd7f-3618-71fc-a348-680923b64576
 GET {{host}}:{{port}}/Pledges?UserId={{User1Id}}&PaginationTake=10&level=1
 ### 
 
@@ -231,3 +231,38 @@ GET {{host}}:{{port}}/BTC/subscribed?ApplicationUserId={{UserId}}&PaginationTake
 
 GET {{host}}:{{port}}/BTC/subscribed?level=1
 ###
+
+
+POST {{host}}:{{port}}/Pledges
+Content-Type: application/json
+{
+  "ApplicationUserId": "0196fa27-4ca5-740f-ae1f-2620600d913e",
+  "bloodDonationRequestId": "facbb57b-1c39-c154-269c-d7323a866f1c",
+  "pledgeDate": "2025-05-28T01:26:27.739Z",
+  "pledgeNotes": "Notes"
+}
+### 0196fd7e-2d78-75ff-92ab-8c7f590e598c
+
+
+POST {{host}}:{{port}}/Pledges
+Content-Type: application/json
+{
+  "ApplicationUserId": "0196fd7f-3618-71fc-a348-680923b64576",
+  "bloodDonationRequestId": "d94dd936-d026-2c8b-c679-a0c4c9938597",
+  "pledgeDate": "2025-05-28T01:26:27.739Z",
+  "pledgeNotes": "Notes de test"
+}
+###
+
+
+// UserID: 0196fd7f-3618-71fc-a348-680923b64576
+// Pid:    019701b1-540d-7d52-b2c7-d63d09e3b814
+PUT {{host}}:{{port}}/Pledges/019701b1-540d-7d52-b2c7-d63d09e3b814
+Content-Type: application/json
+{
+  "ApplicationUserId":"0196fd7f-3618-71fc-a348-680923b64576",
+  "pledgeDate": "2025-05-26T01:26:27.739Z"
+}
+###
+
+
