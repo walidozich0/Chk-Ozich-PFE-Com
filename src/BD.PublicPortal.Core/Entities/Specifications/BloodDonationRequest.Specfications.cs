@@ -22,8 +22,10 @@ public class BloodDonationRequestSpecification:Specification<BloodDonationReques
     
     if (level > 0)
       Query.Include(x => x.BloodTansfusionCenter);
+    Query.Where(x => x.EvolutionStatus == BloodDonationRequestEvolutionStatus.Waiting ||
+                     x.EvolutionStatus == BloodDonationRequestEvolutionStatus.PartiallyResolved);
 
-    if(filter!=null && filter.WilayaId != null)
+    if (filter!=null && filter.WilayaId != null)
       Query.Where(x => x.BloodTansfusionCenter.WilayaId == filter.WilayaId);
 
     if(filter!=null && filter.ReqPriority != null)
