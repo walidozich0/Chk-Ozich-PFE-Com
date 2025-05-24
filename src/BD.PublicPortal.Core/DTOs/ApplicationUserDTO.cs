@@ -33,6 +33,7 @@ namespace BD.PublicPortal.Core.DTOs
 
         #region Properties
 
+        public Guid? Id { get; set; }
         public System.Guid? DonorCorrelationId { get; set; }
 
         public bool? DonorWantToStayAnonymous { get; set; }

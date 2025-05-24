@@ -31,11 +31,11 @@ namespace BD.PublicPortal.Core.DTOs
 
         public System.Guid Id { get; set; }
 
-        public BloodDonationPladgeEvolutionStatus EvolutionStatus { get; set; }
+        public BloodDonationPladgeEvolutionStatus EvolutionStatus { get; set; } = 0;
 
-        public System.DateTime PledgeInitiatedDate { get; set; }
+        public System.DateTime PledgeInitiatedDate { get; set; } = System.DateTime.UtcNow;
 
-        public System.DateTime? PledgeDate { get; set; }
+    public System.DateTime? PledgeDate { get; set; }
 
         public System.DateTime? PledgeHonoredOrCanceledDate { get; set; }
 
