@@ -41,6 +41,8 @@ DELETE {{host}}:{{port}}/Contributors/{{id_to_delete}}
 
 ### Auth:
 
+### Register:
+
 POST {{host}}:{{port}}/auth/register2
 Content-Type: application/json
 {
@@ -78,6 +80,7 @@ Content-Type: application/json
 ###
 
 
+### Login:
 
 POST {{host}}:{{port}}/auth/login
 Content-Type: application/json
@@ -99,6 +102,7 @@ Authorization: Bearer {{token}}
 GET {{host}}:{{port}}/user/0196fd7f-3618-71fc-a348-680923b64576
 ###
 
+###Users
 
 GET {{host}}:{{port}}/users/
 ###
@@ -228,16 +232,6 @@ GET {{host}}:{{port}}/Pledges?UserId={{User3Id}}&EvolutionStatus=4&PaginationTak
 
 
 
-### BTC subscribed
-
-@UserId = 0196fa27-4ca5-740f-ae1f-2620600d913e
-GET {{host}}:{{port}}/BTC/subscribed?ApplicationUserId={{UserId}}&PaginationTake=10&level=1
-###
-
-GET {{host}}:{{port}}/BTC/subscribed?level=1
-###
-
-
 POST {{host}}:{{port}}/Pledges
 Content-Type: application/json
 {
@@ -247,7 +241,6 @@ Content-Type: application/json
   "pledgeNotes": "Notes"
 }
 ### 0196fd7e-2d78-75ff-92ab-8c7f590e598c
-
 
 POST {{host}}:{{port}}/Pledges
 Content-Type: application/json
@@ -259,7 +252,6 @@ Content-Type: application/json
 }
 ###
 
-
 // UserID: 0196fd7f-3618-71fc-a348-680923b64576
 // Pid:    019701b1-540d-7d52-b2c7-d63d09e3b814
 PUT {{host}}:{{port}}/Pledges/019701b1-540d-7d52-b2c7-d63d09e3b814
@@ -267,6 +259,35 @@ Content-Type: application/json
 {
   "ApplicationUserId":"0196fd7f-3618-71fc-a348-680923b64576",
   "pledgeDate": "2025-05-26T01:26:27.739Z"
+}
+###
+
+
+
+### BTC subscribed
+
+@UserId = 0196fa27-4ca5-740f-ae1f-2620600d913e
+GET {{host}}:{{port}}/BTC/subscribed?ApplicationUserId={{UserId}}&PaginationTake=10&level=1
+###
+
+GET {{host}}:{{port}}/BTC/subscribed?level=1
+###
+
+
+### Subscriptions
+
+POST {{host}}:{{port}}/subscriptions
+Content-Type: application/json
+{
+  "ApplicationUserId": "0196fd7e-dad3-7d8e-bf2f-89b00e79ba37",
+  "BloodTansfusionCenterId": "895bc690-3f2a-66c2-456f-ec56ae482558"
+}
+###
+
+DELETE {{host}}:{{port}}/subscriptions/61d6696f-e81c-4e41-9d7f-ab1a97d4a7d7
+Content-Type: application/json
+{
+  "ApplicationUserId": "0196fd7e-dad3-7d8e-bf2f-89b00e79ba37"
 }
 ###
 
