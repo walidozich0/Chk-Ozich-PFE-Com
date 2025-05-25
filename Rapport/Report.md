@@ -369,3 +369,127 @@ stratégique.**
    Cette interface est privée, contrairement au portail public. Cela assure un niveau
    de sécurité élevé des données médicales et s’efforce d’assurer qu’aucune institution
    non autorisée n’y ait accès.
+
+# Technologies et architectures utilisées
+
+**a. Backend –** [**ASP.NET**](http://ASP.NET) **Core & FastEndpoints**
+
+[ASP.NET](http://ASP.NET) Core est un framework open source moderne développé par Microsoft pour construire des applications web, tout type d’APIs (REST, gRPC, websockets, etc.). Il est performant, multiplateforme et maintenu activement. Dans ce projet, le choix s’est porté sur FastEndpoints, une surcouche légère et plus expressive permettant de structurer les endpoints de manière explicite, tout en intégrant naturellement des concepts comme la validation, la documentation et les middleware et le binding des données des requêtes (path params, query params, body headers…) dans une seule instance de la classe de la requête que le développeur définit selon l’endpoint, et elle permet au développeur de définir des classes qui structurent la réponse retournée au client, même si la gestion des événements internes (background tasks, cron jobs) se fait avec l’approche pub/sub.
+
+**b. ORM - Entity Framework Core**
+
+EF Core est un ORM (Object-Relational Mapper) de Microsoft qui permet de travailler avec des bases de données en utilisant des objets C#. Il supporte le LINQ, la migration de schéma, le traçage des changements, et une personnalisation fine des entités via Fluent API. Il est utilisé ici pour mapper les entités métiers aux tables PostgreSQL sans manuellement écrire les scripts SQL, ce qui offre une meilleure expérience de développement.
+
+**c. Base de données – PostgreSQL**
+
+PostgreSQL est un système de gestion de base de données relationnelle très fiable, performant, open source et extensible. Il est utilisé dans ce projet pour sa robustesse, sa gestion stricte des types, sa compatibilité avec les outils modernes et ses fonctionnalités comme les index complexes, les vues matérialisées et la gestion des transactions avancées, et la possibilité de stocker des données relationnelles et des données JSON qui offre une flexibilité nécessaire dans les projets large scale.
+
+**d. Frontend – Next.js, TypeScript, Flutter**
+
+Next.js est un framework basé sur ReactJS, utilisé dans les projets front-end modernes car il offre un ensemble de fonctionnalités intégrées pour optimiser le **SEO**. Son mélange intelligent entre **CSR** (Client Side Rendering) pour l’interactivité, **SSR** (Server Side Rendering) pour le rendu dynamique et **SSG** (Static Site Generation) pour les performances en fait une solution très efficace. Il prend en charge **TypeScript** nativement, permettant un développement plus sûr et structuré grâce au typage statique. De plus, l’intégration avec **Tailwind CSS** facilite la création d’interfaces modernes, responsives et maintenables, directement via des classes utilitaires. Ensemble, Next.js, TypeScript et Tailwind offrent un écosystème puissant, cohérent et productif.
+
+Flutter est un framework développé par Google pour créer des applications mobiles cross-platform. Il permet de partager le même code source pour Android et iOS, tout en conservant des performances natives.
+
+**e. Sécurité – JWT**
+
+Les JWT (JSON Web Tokens) sont utilisés pour gérer l’authentification et l’autorisation. Chaque utilisateur reçoit un token signé qui est utilisé dans les requêtes HTTP pour prouver son identité. Ce mécanisme permet une authentification sans sauvegarde d'état (stateless), compatible avec des architectures distribuées.
+
+**f. Architecture – Clean Architecture DDDfollowing event-driven architecture principles**
+
+**La Clean Architecturesépare clairement les responsabilités en différentes couches, où lesinteractions se font à travers le principe de l'injection de dépendances(Dependency Injection - DI) :**
+
+- **Core : contient la logique métier pure (entités, interfaces, événements de domaine) ;**
+
+- **UseCases / Application : gère la logique d’application, orchestrée notamment via MediatR (commandes, requêtes, règles métier) ;**
+
+- **Infrastructure : implémente les services externes (base de données, SMTP, Kafka, etc.) ;**
+
+- **Web / API : expose les endpoints, gère l’authentification, la validation et les communications entrantes.**
+
+**Cette architecturefavorise un code testable, modulaire et hautement maintenable sur le longterme.**
+
+**2\. Design Patterns etconcepts appliqués**
+
+**a. CQRS (Command QueryResponsibility Segregation)**
+
+**Le pattern CQRSconsiste à séparer les opérations de lecture (Query) des opérations d’écriture(Command). Chaque type de traitement a ses propres objets, handlers etpipelines. Cela permet d’optimiser les performances, la lisibilité du code etde mieux respecter le principe de responsabilité unique.**
+
+**b. DDD (Domain-Driven Design)**
+
+**Le DDD vise à alignerle modèle logiciel avec la logique métier réelle. Le cœur de l’applicationrepose sur des entités, des agrégats, des objets de valeur et des services dedomaine. Cela permet de construire un modèle riche, cohérent et centré sur les règlesmétier, avec une gouvernance claire des données et des comportements.**
+
+**c. Event-Driven Architecture (EDA)**
+
+**L’EDA repose sur lapublication et la consommation d’événements métier. Lorsqu’une action seproduit (ex : un don est validé), un événement est publié sur un bus (Kafka),et d’autres services peuvent réagir. Cela rend les services découplés, réactifset extensibles sans modifier les composants existants.**
+
+**d. Repository Pattern**
+
+**Le Repository Patternfournit une abstraction entre le domaine et la couche de persistance. Il permetde centraliser l’accès aux données et de tester le domaine sans dépendre de labase de données réelle.**
+
+**e. Result Pattern**
+
+**Ce pattern, utiliséici via la bibliothèque Ardalis.Result, standardise les retours des appelsmétiers. Chaque réponse contient un statut (Succès, Erreur, Invalide) avec unmessage clair et des détails.**
+
+**f. Mediator Pattern**
+
+**Le Mediator Patternest implémenté via la bibliothèque MediatR. Il permet de centraliser les appelsentre objets via des requêtes ou des commandes, sans couplage direct entre lesclasses. Cela réduit les dépendances et améliore la lisibilité.**
+
+**2\. Docker –Conteneurisation et déploiement**
+
+**Docker est uneplateforme de conteneurisation permettant de packager une application et sesdépendances dans un environnement isolé et reproductible, appelé 'conteneur'.Il permet un déploiement rapide, portable et cohérent sur différentsenvironnements (dev, test, production).**
+
+**a. Image Docker**
+
+**Une image est unmodèle immuable contenant tout ce qu’il faut pour exécuter une application :code, librairies, runtime, configurations. Elle est définie par un fichierDockerfile.**
+
+**b. Conteneur**
+
+**Un conteneur est uneinstance en exécution d’une image Docker. Chaque service (API, base de données,Kafka, etc.) peut être lancé dans son propre conteneur, isolé des autres.**
+
+**c. Docker Compose**
+
+**Docker Compose permetde définir et d’exécuter des applications multi-conteneurs via un fichier YAML.Il facilite l’orchestration locale des services nécessaires au projet.**
+
+**3\. Aspire -Observabilité et orchestration .NET**
+
+**Aspire est uneplateforme .NET moderne conçue pour faciliter la création, l’observabilité, laconfiguration et l’orchestration de services distribués. Elle s’intègreparfaitement avec Docker, Kubernetes et les standards du cloud natif.**
+
+**a. Orchestration deservices**
+
+**Aspire permet dedécrire les dépendances entre services (API, BDD, Kafka, Redis…) et de lesexécuter automatiquement ensemble. Il prend en charge le démarrage des servicesavec logs centralisés et visualisation des relations interservices.**
+
+**b. Observabilité**
+
+**Grâce à OpenTelemetry,Aspire offre la traçabilité des requêtes, le suivi des métriques deperformance, les logs structurés et les erreurs d’exécution. Cela permet undiagnostic rapide et une meilleure résilience.**
+
+## Kafka –Architecture et fonctionnement
+
+**Apache Kafka est uneplateforme distribuée de traitement de flux d’événements (event streaming)conçue pour la haute performance, la résilience et la scalabilité horizontale.Elle permet la publication, la souscription, le stockage et le traitement de donnéesen temps réel. Voici les principaux composants de son architecture :**
+
+**a. Broker (MessageBroker)**
+
+**Un broker Kafka est unserveur chargé de recevoir, stocker et distribuer les messages. Un clusterKafka est composé de plusieurs brokers, qui se coordonnent pour gérer lestopics et les partitions. La coordination entre les brokers s’effectue viaApache ZooKeeper (ou KRaft, la nouvelle alternative native à partir de Kafka3.x).**
+
+**b. Topic**
+
+**Un topic est unecatégorie logique de messages. Les producteurs publient leurs messages vers untopic, et les consommateurs s’y abonnent. Chaque topic est divisé enpartitions, ce qui permet le parallélisme, la résilience et une distributionéquilibrée de la charge.**_**Exemple**_ **: un topic BloodRequestCreated peut contenir tous les événementsde création de demandes de sang par les CTS.**
+
+**c. Partition**
+
+**Une partition est uneséquence ordonnée, immuable et persistante de messages. Chaque message dans unepartition a un offset unique. Les partitions permettent une lecture parallèlepar plusieurs consommateurs et facilitent la scalabilité.**
+
+**d. Producer**
+
+**Un producer est uneapplication ou un service qui publie des messages vers un ou plusieurs topics.Dans notre cas, le backend du CTS agit comme un producer lorsqu’il envoie unévénement (par exemple, la création d’une demande de sang).**
+
+**e. Consumer**
+
+**Un consumer lit lesmessages depuis un ou plusieurs topics. Il peut faire partie d’un groupe deconsommateurs (consumer group), où chaque partition est consommée par un seulmembre du groupe, permettant une répartition du traitement.**_**Exemple**_ **: le portail public et le dashboard central consomment lesévénements des CTS en temps réel pour mise à jour et affichage.**
+
+**f. Cluster etscalabilité**
+
+**Un cluster Kafka estun ensemble de brokers répartis sur plusieurs machines. Kafka garantit laréplication des partitions pour la haute disponibilité. Il est conçu pour gérerdes millions de messages par seconde, avec une latence faible, grâce à la distributionautomatique des partitions entre brokers.**
+
+**g. Kafka Manager**
+
+**Kafka Manager (ououtils similaires comme Confluent Control Center, AKHQ) est une interface degestion qui permet d’administrer visuellement les topics, les partitions, lesoffsets, les groupes de consommateurs et l’état du cluster. Cela simplifie lasurveillance et la maintenance des environnements Kafka en production.**
